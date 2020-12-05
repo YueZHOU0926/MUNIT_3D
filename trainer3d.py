@@ -2,7 +2,7 @@
 Copyright (C) 2017 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
-from networks import AdaINGen, MsImageDis, VAEGen
+from networks3d import AdaINGen, MsImageDis, VAEGen
 from utils import weights_init, get_model_list, vgg_preprocess, load_vgg16, get_scheduler
 from torch.autograd import Variable
 import torch
@@ -18,7 +18,7 @@ class MUNIT_Trainer(nn.Module):
         self.gen_b = AdaINGen(hyperparameters['input_dim_b'], hyperparameters['gen'])  # auto-encoder for domain b
         self.dis_a = MsImageDis(hyperparameters['input_dim_a'], hyperparameters['dis'])  # discriminator for domain a
         self.dis_b = MsImageDis(hyperparameters['input_dim_b'], hyperparameters['dis'])  # discriminator for domain b
-        self.instancenorm = nn.InstanceNorm2d(512, affine=False)
+        self.instancenorm = nn.InstanceNorm3d(512, affine=False)
         self.style_dim = hyperparameters['gen']['style_dim']
 
         # fix the noise used in sampling

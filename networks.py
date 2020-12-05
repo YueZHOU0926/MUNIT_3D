@@ -144,6 +144,7 @@ class AdaINGen(nn.Module):
         for m in model.modules():
             if m.__class__.__name__ == "AdaptiveInstanceNorm2d":
                 num_adain_params += 2*m.num_features
+                print(num_adain_params)
         return num_adain_params
 
 
